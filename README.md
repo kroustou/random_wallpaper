@@ -8,8 +8,13 @@ a background:
 this only works in non gnome desktop environments. For gnome you need
 to use gconftool.
 
-#### installing as a command
+#### command to be used for cronjob
 
-    sudo ln -s get_wallpaper.py /usr/local/bin/get_wallpaper.py
+	#!/bin/bash
+	source /home/staurosk/.virtualenvs/random_wallpaper/bin/activate
+	LINK="$(/usr/local/bin/get_wallpaper.py)"
+	DISPLAY=:0 /usr/bin/feh --bg-scale ${LINK}
+
+
 
 

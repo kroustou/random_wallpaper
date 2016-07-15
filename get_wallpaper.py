@@ -14,5 +14,5 @@ data = soup.findAll(
     }
 )
 img = random.choice(data)
-link = '{}/download/'.format(img.get('href'))
+link = '{}{}/download'.format(url[:-1], img.get('href'))
 print(link)

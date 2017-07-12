@@ -1,18 +1,7 @@
 #!/usr/bin/env python3
+import os
 import requests
-from bs4 import BeautifulSoup
-import random
-
-url = 'https://unsplash.com/'
-response = requests.get(url).text
-
-soup = BeautifulSoup(response, 'html.parser')
-data = soup.findAll(
-    'a',
-    attrs={
-        'class': 'cV68d'
-    }
-)
-img = random.choice(data)
-link = '{}{}/download'.format(url[:-1], img.get('href'))
-print(link)
+api_key = os.environ.get('UNSPLASH_CLIENT_ID')
+url = 'https://api.unsplash.com/photos/random/?client_id=%s' % (api_key)
+response = requests.get(url).json()
+print(response['urls']['full'])
